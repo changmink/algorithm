@@ -1,3 +1,5 @@
+package backjoon;
+
 import java.util.*;
 
 public class BJ10828 {
