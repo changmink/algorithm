@@ -38,7 +38,7 @@ public class Permutaion {
         while (i > 0 && inputs[i - 1] < inputs[i]) i--;
 
         if (i <= 0) return false;
-
+        //true, false 여부는 이미 판단 됨
         int j = inputs.length - 1;
         while (inputs[j] >= inputs[i - 1]) --j;
         int temp = inputs[i - 1];

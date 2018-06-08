@@ -5,7 +5,7 @@ import java.util.*;
 /**
  * Created by changmin on 2017. 12. 15..
  */
-public class BJ2247 {
+public class BJ2447 {
     public static void drawStar(char[][] stars, int row, int col, int size){
         if(size == 1){
             stars[row][col] = '*';

@@ -1,5 +1,6 @@
 import ETC.*;
 import org.junit.*;
+import baekjoon.java.BJ1722;
 
 /**
  * Created by changmin on 2017. 12. 17..
@@ -27,5 +28,10 @@ public class TestPermutaion {
         input = new int[]{1,2,3,4};
         output = p.prevPermutation(input);
         Assert.assertEquals(output, false);
+    }
+
+    @Test
+    public void testBJ1722(){
+
     }
 }

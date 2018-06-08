@@ -17,39 +17,32 @@ public class BJ1780 {
             table[2] += 1;
         }
     }
+    public static boolean same(int[][] paper, int row, int col, int size){
+        for(int r = row; r < row + size; ++r){
+            for(int c = col; c < col + size; ++c){
+                if(paper[row][col] != paper[r][c]){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 
     public static void countPaper(int[] table, int[][] paper, int row, int col, int size){
         int value = paper[row][col];
-        boolean needDiv = false;
 
         if(size == 1){
             count(table, value);
             return;
         }
 
-        for(int r = row; r < row + size; ++r){
-            for(int c = col; c < col + size; ++c){
-                if(value != paper[r][c]){
-                    needDiv = true;
-                    break;
+        if(same(paper, row, col, size)){
+            int next = size / 3;
+            for(int i = 0; i < 3; ++i){
+                for(int j = 0; j < 3; ++j){
+                    countPaper(table, paper, row + next * i, col + next * j, next);
                 }
             }
-        }
-
-        if(needDiv){
-            int next = size / 3;
-
-            countPaper(table, paper, row, col, next);
-            countPaper(table, paper, row + next, col, next);
-            countPaper(table, paper, row + 2 * next, col, next);
-
-            countPaper(table, paper, row, col + next, next);
-            countPaper(table, paper, row + next, col + next, next);
-            countPaper(table, paper, row + 2 * next, col + next, next);
-
-            countPaper(table, paper, row, col + 2 * next, next);
-            countPaper(table, paper, row + next, col + 2 * next , next);
-            countPaper(table, paper, row + 2 * next, col + 2 * next, next);
         }else{
             count(table, value);
         }

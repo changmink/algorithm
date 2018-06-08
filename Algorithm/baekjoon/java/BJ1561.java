@@ -1,11 +1,14 @@
 package baekjoon.java;
 
 
-import java.util.*;
+
 
 /**
+ * 다른 사람 소스 풀이 보고 함 - 테스트 코드를 돌린 결과 본인것이 더 정확
  * Created by changmin on 2017. 12. 16..
  */
+import java.util.*;
+
 public class BJ1561 {
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);

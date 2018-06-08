@@ -1,13 +1,12 @@
 package baekjoon.java;
 
-import java.sql.*;
 import java.util.*;
 
 /**
  * Created by changmin on 2017. 12. 16..
  */
 public class BJ2805 {
-    public static int getMaxSawLength(int[] woods, int n, int m){
+    public static int getMaxSawLength(int[] woods, int n, int target){
         int l = 0;
         int r = Arrays.stream(woods).max().getAsInt();
 
@@ -15,7 +14,7 @@ public class BJ2805 {
 
         while(l <= r){
             int mid = (l + r) / 2;
-            if(checkHeight(woods, n, m, mid)){
+            if(cuttingWoodsBiggerOrEqual(woods, n, target, mid)){
                 l = mid + 1;
                 output = Math.max(output, mid);
             }
@@ -27,7 +26,7 @@ public class BJ2805 {
         return output;
     }
 
-    public static boolean checkHeight(int[] woods, int n, int m, int h){
+    public static boolean cuttingWoodsBiggerOrEqual(int[] woods, int n, int target, int h){
         int sum = 0;
 
         for(int i = 0; i < n; ++i){
@@ -35,7 +34,7 @@ public class BJ2805 {
                 sum += woods[i] - h;
         }
 
-        return sum >= m;
+        return sum >= target;
     }
 
     public static void main(String[] args){

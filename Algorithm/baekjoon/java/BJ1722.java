@@ -7,10 +7,18 @@ import java.util.*;
  */
 public class BJ1722 {
     public static long[] facto = new long[21];
-    public static boolean[] used = new boolean[21];
+
+    static {
+        facto[0] = 1;
+
+        for(int i = 1; i < 21; ++i){
+            facto[i] = facto[i-1] * i;
+        }
+    }
 
     public static long getIndex(int[] inputs){
         long output = 0;
+        boolean[] used = new boolean[21];
         for(int i  = 0;  i < inputs.length; ++i) {
             for(int j = 1; j < inputs[i]; j++) {
                 if(used[j] == false) {
@@ -22,8 +30,9 @@ public class BJ1722 {
         return output + 1;//처음은 카운트 하지 않기 때문에 1을 더한다.
     }
 
-    public static int[] getPermutation(int n, int index){
+    public static int[] getPermutation(int n, long index){
         int[] output = new int[n];
+        boolean[] used = new boolean[21];
         for(int i = 0; i < n; ++i){
             for(int j = 1; j <= n; ++j){
                 if(used[j] == true) continue;
@@ -36,18 +45,10 @@ public class BJ1722 {
                 }
             }
         }
-
-
         return output;
     }
 
     public static void main(String[] args){
-        facto[0] = 1;
-
-        for(int i = 1; i < 21; ++i){
-            facto[i] = facto[i-1] * i;
-        }
-
         Scanner scanner = new Scanner(System.in);
 
         int n = scanner.nextInt();
@@ -67,7 +68,5 @@ public class BJ1722 {
             long output = getIndex(inputs);
             System.out.println(output);
         }
-
-
     }
 }

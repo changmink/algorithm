@@ -2,34 +2,30 @@ package baekjoon.java;
 
 import java.util.*;
 
-/**
- * Created by changmin on 2017. 12. 15..
- */
-public class BJ1992 {
-    public static String quardTree(char[][] inputs, int row, int col, int size){
-        if(size == 1) {
-            return String.valueOf(inputs[row][col]);
+class BJ1992 {
+    public static String quadTree(char[][] input, int s1, int s2, int size){
+        StringBuilder output = new StringBuilder();
+
+        if(same(input, s1, s2, size)){
+            output.append(input[s1][s2]);
+        }else{
+            size = size / 2;
+
+            output.append("(");
+            output.append(quadTree(input, s1, s2, size));
+            output.append(quadTree(input, s1, s2 + size, size));
+            output.append(quadTree(input, s1 + size, s2, size));
+            output.append(quadTree(input, s1 + size, s2 + size, size));
+            output.append(")");
         }
-        if(sameValue(inputs, row, col, size)){
-            return String.valueOf(inputs[row][col]);
-        }else {
-            int nextSize = size / 2;
-            StringBuilder stb = new StringBuilder();
-            stb.append("(");
-            stb.append(quardTree(inputs, row, col , nextSize));
-            stb.append(quardTree(inputs, row, col + nextSize, nextSize));
-            stb.append(quardTree(inputs, row + nextSize, col, nextSize));
-            stb.append(quardTree(inputs, row + nextSize, col + nextSize, nextSize));
-            stb.append(")");
-            return stb.toString();
-        }
+
+        return output.toString();
     }
 
-    private static boolean sameValue(char[][] inputs, int row, int col, int size) {
-        char value = inputs[row][col];
-        for(int r = row; r < row + size; ++r){
-            for(int c = col; c < col + size; ++c){
-                if(value != inputs[r][c])
+    static boolean same(char[][]input, int s1, int s2, int size){
+        for(int i = s1; i < s1 + size; ++i){
+            for(int j = s2; j < s2 + size; ++j){
+                if(input[i][j] != input[s1][s2])
                     return false;
             }
         }
@@ -45,7 +41,7 @@ public class BJ1992 {
             inputs[i] = scanner.nextLine().toCharArray();
         }
 
-        String output = quardTree(inputs, 0,0, size);
+        String output = quadTree(inputs, 0,0, size);
         System.out.println(output);
     }
 }
