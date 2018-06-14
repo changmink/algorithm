@@ -7,4 +7,30 @@ package crackInterview.chap2;
 public class Node<T>{
    public T data;
    public Node next;
+
+   public Node() {
+   }
+
+   public Node(T data) {
+
+      this.data = data;
+   }
+
+   public static String traverse(Node start){
+      if(start == null)
+         return "";
+
+      StringBuffer output = new StringBuffer();
+
+      Node p = start;
+      while(p.next != null){
+         output.append(p.data);
+         output.append('-');
+         p = p.next;
+      }
+
+      output.append(p.data);
+
+      return output.toString();
+   }
 }

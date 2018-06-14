@@ -3,6 +3,9 @@ package crackInterview.chap2test;
 import org.junit.*;
 import crackInterview.chap2.*;
 
+
+import java.util.logging.*;
+
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -86,4 +89,17 @@ public class TestP3 {
 
         return output.toString();
     }
+
+    public void next(Node n){
+       n = n.next;
+       System.out.println(traverse(n));
+    }
+
+    @Test
+    public void test(){
+        next(a);
+        System.out.print(traverse(a));
+    }
+
+
 }
